@@ -7,7 +7,8 @@ material = pra.Material(energy_absorption=0.2, scattering=0.1)
 
 def pyramid_make(centre,height,radius,N=3,thetha=0):
     #Function takes in centre as numpy array of 3 coordinates, height & radius as a float, 
-    #N is the number of sides in integer and thetha is the orientation of the polygon
+    #N is the number of sides in integer and thetha is the orientation of the pyramid
+    # height can be negative for upside-down orientation of pyramid
 
     #Function outputs a 2-D walls array
 
@@ -30,7 +31,7 @@ def pyramid_make(centre,height,radius,N=3,thetha=0):
 
     return walls
 
-#Code test
+#Code test example
 room_dim = [10, 10, 5]
 box = pra.ShoeBox(room_dim, fs=16000, materials=material)
 walls = box.walls

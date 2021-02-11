@@ -32,7 +32,7 @@ def polygon_make(centre,height,radius,N=3,thetha=0):
 
     return walls
 
-#Code test
+#Code test example
 room_dim = [10, 10, 5]
 box = pra.ShoeBox(room_dim, fs=16000, materials=material)
 walls = box.walls
