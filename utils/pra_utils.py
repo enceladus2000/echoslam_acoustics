@@ -8,7 +8,7 @@ def add_obstacle(box, obstacle_faces, material):
 					material.energy_absorption["coeffs"], 
 					material.scattering["coeffs"]))
 
-def make_polygon(centre, height, radius, N=3, rpy=[0,0,0]):
+def make_polygon(centre, radius, height, N=3, rpy=[0,0,0]):
 	"""TODO: nice docstring
 	"""
 	lower_points = []
@@ -59,3 +59,6 @@ def make_polygon(centre, height, radius, N=3, rpy=[0,0,0]):
 	walls.append(np.array(upper_points))
 
 	return walls
+
+def make_cylinder(centre, radius, height, rpy=[0,0,0], N=100):
+	return make_polygon(centre, radius, height, N=N, rpy=rpy) 
