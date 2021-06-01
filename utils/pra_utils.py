@@ -8,18 +8,39 @@ def add_obstacle(box, obstacle_faces, material):
 					material.energy_absorption["coeffs"], 
 					material.scattering["coeffs"]))
 
-def make_polygon(centre, height, radius, N=3, theta=0):
+def make_polygon(centre, height, radius, N=3, rpy=[0,0,0]):
 	"""TODO: nice docstring
 	"""
 	lower_points = []
 	upper_points = []
 	
 	for n in range(N):
-		x = radius * np.cos(2*np.pi*n/N + theta) + centre[0]
-		y = radius * np.sin(2*np.pi*n/N + theta) + centre[1]
+		x = radius * np.cos(2*np.pi*n/N)
+		y = radius * np.sin(2*np.pi*n/N)
 
-		lower_points.append(np.array([x, y, centre[2]]))
-		upper_points.append(np.array([x, y, centre[2] + height]))
+		lower_points.append(np.array([x, y, height/2]))
+		upper_points.append(np.array([x, y, -height/2]))
+
+	# do rotation and translation
+	cr, cp, cy = np.cos(rpy)
+	sr, sp, sy = np.sin(rpy)
+	Rx = np.array([
+		[1, 0, 0],
+		[0, cr, -sr],
+		[0, sr, cr]
+	]).T
+	Ry = np.array([
+		[cp, 0, sp],
+		[0, 1, 0],
+		[-sp, 0, cp]
+	]).T
+	Rz = np.array([
+		[cy, -sy, 0],
+		[sy, cy, 0],
+		[0, 0, 1]
+	]).T
+	lower_points = np.array(lower_points) @ Rx @ Ry @ Rz + np.array(centre)
+	upper_points = np.array(upper_points) @ Rx @ Ry @ Rz + np.array(centre)
 
 	walls = []
 	# add side walls
