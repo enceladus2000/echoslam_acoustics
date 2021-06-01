@@ -8,13 +8,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import signal
 from scipy.io import wavfile
+import os
 
 def main():
 	# create anechoic room
-	fs = 16000
-	wall_material = pra.Material(energy_absorption=1.0, scattering=None)
+	wall_material = pra.Material(energy_absorption=0.1, scattering=None)
 	room_dim = [10, 10, 5]
-	room = pra.ShoeBox(room_dim, fs=fs, materials=wall_material)
+	room = pra.ShoeBox(room_dim, 
+						fs=16000,
+						materials=wall_material,
+						max_order=3,
+						ray_tracing=True,
+						air_absorption=True,
+					)
 	print('Created room.')
 
 	# TODO: add polygonal objects
@@ -35,11 +41,17 @@ def main():
 	room.add_source(source_coord, signal=waveform)
 	room.add_microphone_array(mic_locs)
 	print('Added source and mics.')
-	# visualise
-	room.plot()
-	plt.show() 
+
+	# visualise room
+	# room.plot()
+	# plt.show() 
 
 	# Simulated RIRs
+	room.compute_rir()
+	room.plot_rir()
+	plt.show()
+
+	print('Done, exiting...')
 
 
 def square_wave(freq, duty=0.5, amp=1.0, fs=16000, len=1.0):

@@ -9,6 +9,8 @@ def add_obstacle(box, obstacle_faces, material):
 					material.scattering["coeffs"]))
 
 def make_polygon(centre, height, radius, N=3, theta=0):
+	"""TODO: nice docstring
+	"""
 	lower_points = []
 	upper_points = []
 	
