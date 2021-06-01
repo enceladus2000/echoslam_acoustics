@@ -6,6 +6,11 @@ This folder contains acoustic simulation experiments.
 
 `pipe_trial2.py` creates a basic cuboidal 15m long 'pipe' with acoustically reflective surfaces at both ends. For the following impulse response, the source and mic where kept at x=13m.
 
-![]()
+![](https://github.com/enceladus2000/echoslam_acoustics/blob/master/media/pipe_trial2_IR.png)
 
 This matches with the Fig 2 in this paper. The few additional peaks at the beginning probably correspond to reflections from the side of the pipe.
+
+## Under Development
+
+- `pipe_trial1.py`: Needs work on creating complex room geometries
+- `kalman1D.py`: Basic Kalman implementation
