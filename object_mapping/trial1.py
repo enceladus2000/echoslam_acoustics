@@ -28,7 +28,7 @@ def main():
 	# prepare waveform
 	num_cycles = 8
 	sig_freq = 500
-	waveform = square_wave(sig_freq, amp=10000, fs=fs, len=num_cycles/sig_freq)
+	waveform = square_wave(sig_freq, amp=10000, fs=16000, len=num_cycles/sig_freq)
 	# plt.plot(waveform)
 
 	# add sources and mics
@@ -43,8 +43,8 @@ def main():
 	print('Added source and mics.')
 
 	# visualise room
-	# room.plot()
-	# plt.show() 
+	room.plot()
+	plt.show() 
 
 	# Simulated RIRs
 	room.compute_rir()
