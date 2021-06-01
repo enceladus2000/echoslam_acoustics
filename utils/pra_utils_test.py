@@ -7,7 +7,13 @@ def main():
 	# define room
 	room_material = pra.Material(energy_absorption=0.96, scattering=None)
 	room_dim = [10, 10, 5]
-	room = pra.ShoeBox(room_dim, fs=16000, materials=room_material)
+	room = pra.ShoeBox(room_dim, 
+						fs=16000, 
+						materials=room_material,
+						max_order=4,
+						ray_tracing=True,
+						air_absorption=True
+					)
 
 	# define obstacle
 	obstacle_faces = make_polygon([3,3,2.5],1,4,4,[0,0,0.78])
