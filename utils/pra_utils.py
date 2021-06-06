@@ -2,11 +2,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pyroomacoustics as pra
 
-def add_obstacle(box, obstacle_faces, material):
+def create_walls(obstacle_faces, material):
+	walls = []
 	for face in obstacle_faces:
-		box.walls.append(pra.wall_factory(face.T, 
-					material.energy_absorption["coeffs"], 
-					material.scattering["coeffs"]))
+		walls.append(
+			pra.wall_factory(
+				face.T, 
+				material.energy_absorption["coeffs"], 
+				material.scattering["coeffs"]
+			)
+		)
+
+	return walls 
 
 def make_polygon(centre, radius, height, N=3, rpy=[0,0,0]):
 	"""TODO: nice docstring
