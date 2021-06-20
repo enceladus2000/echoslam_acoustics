@@ -19,7 +19,7 @@ def main():
 
 	# define obstacle
 	obstacle_faces = make_polygon(
-		centre=[4,0,2.5],
+		centre=[3,0,2.5],
 		radius=2.6,
 		height=4,
 		N=4,
@@ -32,7 +32,7 @@ def main():
 	walls.extend(create_walls(room_faces, room_material))
 	walls.extend(create_walls(obstacle_faces, obstacle_material))
 
-	room = pra.Room(walls, fs=fs, max_order=3, ray_tracing=False, air_absorption=True)
+	room = pra.Room(walls, fs=fs, max_order=3, ray_tracing=True, air_absorption=True)
 
 	room.add_source([0, 1, 1.])
 	room.add_microphone([0, -1, 1])
@@ -50,7 +50,7 @@ def main():
 	plt.show()
 
 	# show room
-	room.plot(img_order=1)
+	room.plot(img_order=2)
 	fix_plt_axs(plt, [-9, 9], [-1, 7])
 	plt.show()
 
