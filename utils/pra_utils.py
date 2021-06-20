@@ -52,18 +52,22 @@ def make_polygon(centre, radius, height, N=3, rpy=[0,0,0]):
 	walls = []
 	# add side walls
 	for i in range(N-1):
-		walls.append(np.array([
-					lower_points[i], upper_points[i],
-					upper_points[i+1], lower_points[i+1]
-				]))
+		walls.append(
+			np.array([
+				lower_points[i], upper_points[i],
+				upper_points[i+1], lower_points[i+1]
+			])
+		)
 	# last side wall
-	walls.append(np.array([
-					lower_points[N-1], upper_points[N-1],
-					upper_points[0],lower_points[0] 
-				]))
+	walls.append(
+		np.array([
+				lower_points[N-1], upper_points[N-1],
+				upper_points[0],lower_points[0] 
+			])
+		)
 	# lower and upper walls
 	walls.append(np.array(lower_points))
-	walls.append(np.array(upper_points))
+	walls.append(np.array(upper_points[::-1]))
 
 	return walls
 

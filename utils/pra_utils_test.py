@@ -8,7 +8,7 @@ import pyroomacoustics as pra
 def main():
 	# define room
 	fs=16000
-	room_material = pra.Material(energy_absorption=0.96, scattering=None)
+	room_material = pra.Material(energy_absorption=0.6, scattering=None)
 	room_faces = make_polygon(
 		centre=[0,0,2.5],
 		radius=10,
@@ -20,7 +20,7 @@ def main():
 	# define obstacle
 	obstacle_faces = make_polygon(
 		centre=[3,0,2.5],
-		radius=2.6,
+		radius=2,
 		height=4,
 		N=4,
 		rpy=[0,0,0.78]
@@ -32,14 +32,14 @@ def main():
 	walls.extend(create_walls(room_faces, room_material))
 	walls.extend(create_walls(obstacle_faces, obstacle_material))
 
-	room = pra.Room(walls, fs=fs, max_order=3, ray_tracing=True, air_absorption=True)
+	room = pra.Room(walls, fs=fs, max_order=3, ray_tracing=False, air_absorption=False)
 
-	room.add_source([0, 1, 1.])
-	room.add_microphone([0, -1, 1])
+	room.add_source([0, 0.1, 1.])
+	room.add_microphone([0, -0.1, 1])
 
 	# compute rir
 	room.image_source_model()
-	room.ray_tracing()
+	# room.ray_tracing()
 	room.compute_rir()
 
 	# plot rir but as distances
