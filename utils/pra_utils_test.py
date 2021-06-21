@@ -12,7 +12,7 @@ fs = 16000
 
 def main():
 	# choose any room scenario from the methods below
-	room = empty_room()
+	room = room_with_box()
 
 	# plot rir but as distances
 	if show_rir:
@@ -24,7 +24,7 @@ def main():
 
 	# show room
 	if show_room:
-		room.plot(img_order=2)
+		room.plot(img_order=3)
 		fix_plt_axs(plt, [-9, 9], [-1, 7])
 		plt.show()
 
@@ -96,8 +96,12 @@ def room_with_box():
 	return room 
 	
 def empty_diff_walls():
-	"""TODO: Returns empty room with walls of different materials"""
-	room_material = pra.Material(energy_absorption=0.6, scattering=None)
+	"""Returns empty room with walls of different materials"""
+	# 4 side walls are absorptive
+	room_materials = [pra.Material(energy_absorption=0.1, scattering=None)] * 4
+	# floor and ceiling are reflective
+	room_materials.extend([pra.Material(energy_absorption=0.98, scattering=None)] * 2)
+	
 	room_faces = make_polygon(
 		centre=[0,0,2.5],
 		radius=10,
@@ -108,16 +112,15 @@ def empty_diff_walls():
 
 	# create room
 	walls = []
-	walls.extend(create_walls(room_faces, room_material))
+	walls.extend(create_walls(room_faces, room_materials))
 
-	room = pra.Room(walls, fs=fs, max_order=3, ray_tracing=True, air_absorption=False)
+	room = pra.Room(walls, fs=fs, max_order=3, ray_tracing=False, air_absorption=False)
 
-	room.add_source([0, 0, 2.])
-	room.add_microphone([0, 0.2, 2.1])
+	room.add_source([-5, 2, 2.])
+	room.add_microphone([1, 0, 2.])
 
 	# compute rir
 	room.image_source_model()
-	room.ray_tracing()
 	room.compute_rir()
 
 	return room 
