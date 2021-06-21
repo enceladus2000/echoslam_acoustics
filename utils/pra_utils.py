@@ -3,6 +3,17 @@ import numpy as np
 import pyroomacoustics as pra
 
 def create_walls(obstacle_faces, material):
+	"""Returns a list of Wall objects that can be used in the Room constructor
+
+	Args:
+		obstacle_faces (array of Nx3 numpy 2D matrices): Same as the output of make_polygon. 
+			Each element of this is a 2D matrix representing a wall, each row is a coordinate
+			of a vertex.
+		material (pra.Material): Material of the wall
+
+	Returns:
+		list of Wall objects: Can be directly use in Room constructor
+	"""
 	walls = []
 	for face in obstacle_faces:
 		walls.append(
@@ -16,7 +27,20 @@ def create_walls(obstacle_faces, material):
 	return walls 
 
 def make_polygon(centre, radius, height, N=3, rpy=[0,0,0], reverse_normals=False):
-	"""TODO: nice docstring
+	"""Create an extruded polygon
+
+	Args:
+		centre (array-like): centre of mass of polygon
+		radius (float): distance from centre to side edge
+		height (float): height of extrusion
+		N (int, optional): Number of sides. Defaults to 3.
+		rpy (array-like, optional): Roll, pitch and yaw (in that order). Defaults to [0,0,0].
+		reverse_normals (bool, optional): If true, normals point inward. Keep true for obstacles, false for rooms.
+			Defaults to False.
+
+	Returns:
+		list of 2D Nx3 numpy matrices (N>2): Each 2D numpy matrix is a row-wise list array of 
+			coordinates of each vertex of a wall.
 	"""
 	lower_points = []
 	upper_points = []
