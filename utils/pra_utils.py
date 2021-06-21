@@ -1,12 +1,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from numpy.lib.arraysetops import isin
 import pyroomacoustics as pra
 
-def create_walls(obstacle_faces, material):
+def create_walls(obstacle_faces, materials):
 	"""Returns a list of Wall objects that can be used in the Room constructor
 
 	Args:
-		obstacle_faces (array of Nx3 numpy 2D matrices): Same as the output of make_polygon. 
+		obstacle_faces (array/list of Nx3 numpy 2D matrices): Same as the output of make_polygon. 
 			Each element of this is a 2D matrix representing a wall, each row is a coordinate
 			of a vertex.
 		material (pra.Material): Material of the wall
@@ -14,13 +15,23 @@ def create_walls(obstacle_faces, material):
 	Returns:
 		list of Wall objects: Can be directly use in Room constructor
 	"""
+	material_list = False 
+	if isinstance(materials, list):
+		if len(materials) != len(obstacle_faces):
+			raise TypeError("list of materials should be same length as obstacle_faces")
+		else:
+			material_list = True 
+	elif not isinstance(materials, pra.Material):
+		raise TypeError("materials should be pra.Material or list of pra.Material")
+
 	walls = []
-	for face in obstacle_faces:
+	for i in range(len(obstacle_faces)):
+		m = materials[i] if material_list else materials
 		walls.append(
 			pra.wall_factory(
-				face.T, 
-				material.energy_absorption["coeffs"], 
-				material.scattering["coeffs"]
+				obstacle_faces[i].T, 
+				m.energy_absorption["coeffs"], 
+				m.scattering["coeffs"]
 			)
 		)
 

@@ -6,13 +6,13 @@ import numpy as np
 import pyroomacoustics as pra
 
 show_room = True
-show_rir = False 
+show_rir = True 
 
 fs = 16000
 
 def main():
 	# choose any room scenario from the methods below
-	room = room_with_box()
+	room = empty_room()
 
 	# plot rir but as distances
 	if show_rir:
@@ -95,5 +95,32 @@ def room_with_box():
 
 	return room 
 	
+def empty_diff_walls():
+	"""TODO: Returns empty room with walls of different materials"""
+	room_material = pra.Material(energy_absorption=0.6, scattering=None)
+	room_faces = make_polygon(
+		centre=[0,0,2.5],
+		radius=10,
+		height=5,
+		N=4,
+		rpy=[0,0,np.pi/4]
+	)
+
+	# create room
+	walls = []
+	walls.extend(create_walls(room_faces, room_material))
+
+	room = pra.Room(walls, fs=fs, max_order=3, ray_tracing=True, air_absorption=False)
+
+	room.add_source([0, 0, 2.])
+	room.add_microphone([0, 0.2, 2.1])
+
+	# compute rir
+	room.image_source_model()
+	room.ray_tracing()
+	room.compute_rir()
+
+	return room 
+
 if __name__ == '__main__':
 	main()
