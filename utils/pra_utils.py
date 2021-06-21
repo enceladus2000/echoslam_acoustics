@@ -15,7 +15,7 @@ def create_walls(obstacle_faces, material):
 
 	return walls 
 
-def make_polygon(centre, radius, height, N=3, rpy=[0,0,0]):
+def make_polygon(centre, radius, height, N=3, rpy=[0,0,0], reverse_normals=False):
 	"""TODO: nice docstring
 	"""
 	lower_points = []
@@ -56,6 +56,7 @@ def make_polygon(centre, radius, height, N=3, rpy=[0,0,0]):
 				lower_points[i], upper_points[i],
 				upper_points[i+1], lower_points[i+1]
 			])
+		wall = wall[::-1] if reverse_normals else wall
 		walls.append(wall)
 
 	# last side wall
@@ -63,7 +64,12 @@ def make_polygon(centre, radius, height, N=3, rpy=[0,0,0]):
 				lower_points[N-1], upper_points[N-1],
 				upper_points[0],lower_points[0] 
 			])
+	wall = wall[::-1] if reverse_normals else wall
 	walls.append(wall)
+
+	if reverse_normals:
+		lower_points = lower_points[::-1]
+		upper_points = upper_points[::-1]
 
 	# lower and upper walls
 	walls.append(np.array(lower_points))
@@ -73,3 +79,8 @@ def make_polygon(centre, radius, height, N=3, rpy=[0,0,0]):
 
 def make_cylinder(centre, radius, height, rpy=[0,0,0], N=100):
 	return make_polygon(centre, radius, height, N=N, rpy=rpy) 
+
+def fix_plt_axs(plt, xylims, zlims):
+	plt.gca().set_xlim3d(left=xylims[0], right=xylims[1])
+	plt.gca().set_ylim3d(bottom=xylims[0], top=xylims[1])
+	plt.gca().set_zlim3d(bottom=zlims[0], top=zlims[1])
