@@ -30,7 +30,7 @@ def main():
 	# create room
 	walls = []
 	walls.extend(create_walls(room_faces, room_material))
-	walls.extend(create_walls(obstacle_faces, obstacle_material))
+	# walls.extend(create_walls(obstacle_faces, obstacle_material))
 
 	room = pra.Room(walls, fs=fs, max_order=3, ray_tracing=False, air_absorption=False)
 
