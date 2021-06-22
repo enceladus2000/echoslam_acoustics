@@ -4,6 +4,7 @@ import yaml
 import pprint as pp
 
 def dump_room(room, outpath):
+	"""TODO: fix corners issue"""
 	rd = create_room_dict(room)
 	with open(outpath, 'w') as file:
 		yaml.dump(rd, file, default_flow_style=False, sort_keys=False)
@@ -33,10 +34,10 @@ def create_room_dict(room: pra.Room):
 		# TODO: How to determine normal is reversed
 		# wd['reverse_normal'] = False
 
-		corners = wall.corners.T
+		corners = wall.corners.T.tolist()
 		wd['corners'] = []
-		# for corner in corners:
-		# 	wd['corners'].append(corner)
+		for corner in corners:
+			wd['corners'].append(corner)
 
 		rd['walls'].append(wd)
 
