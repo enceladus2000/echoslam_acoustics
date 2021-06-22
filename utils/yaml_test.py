@@ -8,6 +8,7 @@ import numpy as np
 import pyroomacoustics as pra
 import yaml
 from pprint import pprint
+from matplotlib import pyplot as plt
 
 outpath = 'utils/room_data/test1.yaml'
 
@@ -44,14 +45,20 @@ def main():
 	# with open(r'utils/room_data/test1.yaml', 'w') as file:
 	# 	documents = yaml.dump(dict_file, file, default_flow_style=False)
 
-	room = pra.ShoeBox([2, 3, 4], materials=pra.Material(0.2,0.34), air_absorption=True)
+	# room = pra.ShoeBox([2, 3, 4], materials=pra.Material(0.2,0.34), air_absorption=True)
 
-	# dump room into a yaml
-	dump_room(room, outpath)
+	# # dump room into a yaml
+	# dump_room(room, outpath)
 
-	# pretty print room dict
-	rd = create_room_dict(room)
-	pprint(rd, sort_dicts=False)
+	# # pretty print room dict
+	# rd = create_room_dict(room)
+	# pprint(rd, sort_dicts=False)
+
+	##TESTING AREA##
+	room2 = load_room(outpath)
+	room2.plot()
+	plt.show()
+
 	print('Done')
 
 if __name__ == "__main__":

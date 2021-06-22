@@ -3,8 +3,36 @@ import pyroomacoustics as pra
 import yaml
 import pprint as pp
 
+from yaml.loader import Loader
+
+def load_room(inpath):
+	# pass
+	with open(inpath, 'r') as file:
+		# get room dict
+		rdin = yaml.load(file, Loader=yaml.FullLoader)
+
+	pp.pprint(rdin)
+	
+	walls = []
+	for w in rdin['walls']:
+		walls.append(
+			pra.wall_factory(
+				np.array(w['corners']).T,
+				0.12,
+				0.1
+			)
+		)
+
+	room = pra.Room(walls,
+					fs=rdin['fs'],
+					max_order=rdin['max_order'],
+					air_absorption=rdin['air_absorption'],
+					ray_tracing=rdin['ray_tracing']	
+				)
+	return room
+
 def dump_room(room, outpath):
-	"""TODO: fix corners issue"""
+	"""TODO: Docstring"""
 	rd = create_room_dict(room)
 	with open(outpath, 'w') as file:
 		yaml.dump(rd, file, default_flow_style=False, sort_keys=False)
