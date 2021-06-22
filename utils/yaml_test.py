@@ -1,6 +1,8 @@
 import sys
 
 from numpy.core.fromnumeric import sort
+
+# from numpy.core.fromnumeric import sort
 sys.path.append('.')
 import os 
 from utils.gen_utils import *
@@ -10,56 +12,33 @@ import yaml
 from pprint import pprint
 from matplotlib import pyplot as plt
 
-outpath = 'utils/room_data/test1.yaml'
+data_path = 'utils/room_data/'
 
 def main():
-	# dict_file = {
-	# 	'ray_tracing': True,
-	# 	'max_order': 4,
-	# 	'walls': [
-	# 		{
-	# 			'id': 0, 
-	# 			'material': {
-	# 				'abs': .3,
-	# 				'sc': .6
-	# 			},
-	# 			'corners': [
-	# 				[1.,2.,3.],
-	# 				[2.,3.4,4.6],
-	# 				[1.,2.,3.],
-	# 				[2.,3.4,4.6]
-	# 			]
-	# 		},
-	# 		{
-	# 			'id': 1, 
-	# 			'corners': [
-	# 				[2.5,2.5,3.5],
-	# 				[4.3,3.2,4.5],
-	# 				[2.5,2.5,3.5],
-	# 				[4.3,3.2,3.5]
-	# 			]
-	# 		},
-	# 	]
-	# }
-	# print(os.getcwd())
-	# with open(r'utils/room_data/test1.yaml', 'w') as file:
-	# 	documents = yaml.dump(dict_file, file, default_flow_style=False)
+	# choose any of the below functions to create room in different scenarious,
+	# pretty print them, and dump them into a YAML file
+	# empty_room(data_path + 'test1.yaml')	
 
-	# room = pra.ShoeBox([2, 3, 4], materials=pra.Material(0.2,0.34), air_absorption=True)
+	# read a room dump file
+	room_in = load_room(data_path+'test1.yaml')
 
-	# # dump room into a yaml
-	# dump_room(room, outpath)
-
-	# # pretty print room dict
-	# rd = create_room_dict(room)
-	# pprint(rd, sort_dicts=False)
-
-	##TESTING AREA##
-	room2 = load_room(outpath)
-	room2.plot()
+	# plot room
+	room_in.plot()
 	plt.show()
 
 	print('Done')
 
+# The following methods create Room objects in different scenarios
+# and dump them into yaml
+
+def empty_room(outpath):
+	room = pra.ShoeBox([2.5, 3, 4], materials=pra.Material(0.2,0.34), air_absorption=True)
+
+	# pretty print room dict
+	pprint(create_room_dict(room), sort_dicts=False)
+
+	# dump room into a yaml
+	dump_room(room, outpath)
+	
 if __name__ == "__main__":
 	main()
