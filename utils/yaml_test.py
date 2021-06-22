@@ -1,8 +1,4 @@
 import sys
-
-from numpy.core.fromnumeric import sort
-
-# from numpy.core.fromnumeric import sort
 sys.path.append('.')
 import os 
 from utils.gen_utils import *
@@ -22,6 +18,10 @@ def main():
 	# read a room dump file
 	room_in = load_room(data_path+'test1.yaml')
 
+	# pretty print
+	print('Inputted room:')
+	pprint(create_room_dict(room_in))
+	
 	# plot room
 	room_in.plot()
 	plt.show()
