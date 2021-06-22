@@ -6,20 +6,21 @@ import pprint as pp
 from yaml.loader import Loader
 
 def load_room(inpath):
-	# pass
 	with open(inpath, 'r') as file:
 		# get room dict
 		rdin = yaml.load(file, Loader=yaml.FullLoader)
-
-	pp.pprint(rdin)
 	
 	walls = []
 	for w in rdin['walls']:
+		# TODO: checks for value and type of attributes
+		wcorners = np.array(w['corners']).T
+		mat = pra.Material(w['material']['absorption'], w['material']['scattering'])
+
 		walls.append(
 			pra.wall_factory(
-				np.array(w['corners']).T,
-				0.12,
-				0.1
+				wcorners,
+				mat.energy_absorption['coeffs'],
+				mat.scattering['coeffs']
 			)
 		)
 
@@ -29,6 +30,7 @@ def load_room(inpath):
 					air_absorption=rdin['air_absorption'],
 					ray_tracing=rdin['ray_tracing']	
 				)
+	
 	return room
 
 def dump_room(room, outpath):
