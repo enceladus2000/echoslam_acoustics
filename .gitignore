@@ -1,4 +1,6 @@
 .wav
+# folder for rough scripts
+rough 
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
