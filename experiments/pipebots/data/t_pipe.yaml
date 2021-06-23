@@ -1,5 +1,5 @@
-ray_tracing: true
-air_absorption: true
+ray_tracing: false
+air_absorption: false
 max_order: 5
 fs: 16000
 walls:

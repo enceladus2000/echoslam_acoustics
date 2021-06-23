@@ -1,3 +1,5 @@
+"""A simple scenario in which pipe is an empty cubiod"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pyroomacoustics as pra
@@ -29,14 +31,13 @@ def main():
 
 	room.image_source_model()
 
-	# room.plot(img_order=1)
-	# plt.gca().set_xlim3d(left=-2, right=16)
-	# plt.gca().set_ylim3d(bottom=-2, top=16)
-	# plt.gca().set_zlim3d(bottom=-2, top=16)
-	# plt.show()
+	room.plot(img_order=1)
+	plt.gca().set_xlim3d(left=-2, right=16)
+	plt.gca().set_ylim3d(bottom=-2, top=16)
+	plt.gca().set_zlim3d(bottom=-2, top=16)
+	plt.show()
 
 	room.compute_rir()
-	# room.plot_rir()
 	# plt.show()
 
 	impulses = room.rir[0][0]
