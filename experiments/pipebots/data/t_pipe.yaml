@@ -5,8 +5,8 @@ fs: 16000
 walls:
 - id: 0
   material:
-    absorption: 0.0
-    scattering: null
+    absorption: 0.9
+    scattering: 0.2
   corners:
   - - 0.0
     - 0.0
@@ -22,8 +22,8 @@ walls:
     - 0.30000001192092896
 - id: 1
   material:
-    absorption: 0.0
-    scattering: null
+    absorption: 0.9
+    scattering: 0.2
   corners:
   - - 6.599999904632568
     - 0.0
@@ -39,8 +39,8 @@ walls:
     - 0.30000001192092896
 - id: 2
   material:
-    absorption: 0.0
-    scattering: null
+    absorption: 0.9
+    scattering: 0.2
   corners:
   - - 6.599999904632568
     - -2.0
@@ -56,8 +56,8 @@ walls:
     - 0.30000001192092896
 - id: 3
   material:
-    absorption: 0.0
-    scattering: null
+    absorption: 0.9
+    scattering: 0.2
   corners:
   - - 6.900000095367432
     - -2.0
@@ -73,8 +73,8 @@ walls:
     - 0.30000001192092896
 - id: 4
   material:
-    absorption: 0.0
-    scattering: null
+    absorption: 0.9
+    scattering: 0.2
   corners:
   - - 6.900000095367432
     - 6.900000095367432
@@ -90,8 +90,8 @@ walls:
     - 0.30000001192092896
 - id: 5
   material:
-    absorption: 0.0
-    scattering: null
+    absorption: 0.9
+    scattering: 0.2
   corners:
   - - 6.599999904632568
     - 6.900000095367432
@@ -107,8 +107,8 @@ walls:
     - 0.30000001192092896
 - id: 6
   material:
-    absorption: 0.0
-    scattering: null
+    absorption: 0.9
+    scattering: 0.2
   corners:
   - - 6.599999904632568
     - 0.30000001192092896
@@ -124,8 +124,8 @@ walls:
     - 0.30000001192092896
 - id: 7
   material:
-    absorption: 0.0
-    scattering: null
+    absorption: 0.9
+    scattering: 0.2
   corners:
   - - 0.0
     - 0.30000001192092896
@@ -141,7 +141,7 @@ walls:
     - 0.30000001192092896
 - id: 8
   material:
-    absorption: 0.9800000190734863
+    absorption: 0.9
     scattering: 0.20000000298023224
   corners:
   - - 0.0
@@ -170,7 +170,7 @@ walls:
     - 0.0
 - id: 9
   material:
-    absorption: 0.9800000190734863
+    absorption: 0.9
     scattering: 0.20000000298023224
   corners:
   - - 0.0
