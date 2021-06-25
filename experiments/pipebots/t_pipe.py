@@ -38,7 +38,7 @@ def main():
 	plt.show()
 
 	# show room
-	room.plot(img_order=3)
+	room.plot(img_order=5)
 	fix_plt_axs(plt, [-3, 7], [-1, 9])
 	plt.show()
 

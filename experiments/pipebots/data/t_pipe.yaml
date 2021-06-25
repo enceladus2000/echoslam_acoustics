@@ -1,6 +1,6 @@
 ray_tracing: false
 air_absorption: false
-max_order: 5
+max_order: 7
 fs: 16000
 walls:
 - id: 0
@@ -39,7 +39,7 @@ walls:
     - 0.30000001192092896
 - id: 2
   material:
-    absorption: 0.9
+    absorption: 0.2
     scattering: 0.2
   corners:
   - - 6.599999904632568
@@ -56,7 +56,7 @@ walls:
     - 0.30000001192092896
 - id: 3
   material:
-    absorption: 0.9
+    absorption: 0.2
     scattering: 0.2
   corners:
   - - 6.900000095367432
@@ -73,7 +73,7 @@ walls:
     - 0.30000001192092896
 - id: 4
   material:
-    absorption: 0.9
+    absorption: 0.2
     scattering: 0.2
   corners:
   - - 6.900000095367432
