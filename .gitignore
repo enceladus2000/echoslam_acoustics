@@ -1,8 +1,11 @@
+# ros2 extension puts nonsense here
+log
+
 .wav
 
 .vscode
 
-# folder for rough scripts
+# folder for rough scripts for testing random shit
 rough 
 
 # Byte-compiled / optimized / DLL files
