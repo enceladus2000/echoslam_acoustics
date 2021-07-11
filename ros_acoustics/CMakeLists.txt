@@ -22,15 +22,16 @@ find_package(rclpy REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 set(msg_files
-  # msg/Point2D.msg
+  msg/Point3D.msg
+  msg/Point3DArray.msg
 )
 set(srv_files
   # srv/AddThreeInts.srv
 )
 
-# rosidl_generate_interfaces(${PROJECT_NAME}
-#   ${msg_files}
-#   ${srv_files}
-# )
+rosidl_generate_interfaces(${PROJECT_NAME}
+  ${msg_files}
+  # ${srv_files}
+)
 
 ament_package()
