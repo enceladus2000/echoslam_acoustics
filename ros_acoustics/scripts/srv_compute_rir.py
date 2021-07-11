@@ -11,6 +11,7 @@ class ComputeRIRService(Node):
     def __init__(self):
         super().__init__('compute_rir_service')
         self.srv = self.create_service(ComputeRIR, 'compute_rir', self.compute_rir_callback)
+        self.get_logger().info('Initiated computeRIR service')
 
     def compute_rir_callback(self, request, response):
         room = pra.ShoeBox([5, 5, 2], fs=8000, max_order=1)

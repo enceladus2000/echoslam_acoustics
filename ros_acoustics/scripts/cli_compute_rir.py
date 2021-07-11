@@ -4,6 +4,8 @@ from ros_acoustics.srv import ComputeRIR
 
 import rclpy
 from rclpy.node import Node
+import numpy as np
+import matplotlib.pyplot as plt
 
 class BasicRIRClient(Node):
 	
@@ -42,10 +44,14 @@ def main(args=None):
 				rir_client.get_logger().info(
 					'Service call failed %r' % (e,))
 			else:
-				rir_client.get_logger().info('Received response!')
+				rir_client.get_logger().info('Received response! Plotting...')
+
+				plt.plot(response.rir.array)
+				plt.show()
 
 			break
 
+	print('Exiting...')
 	rir_client.destroy_node()
 
 	rclpy.shutdown()
