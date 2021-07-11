@@ -24,14 +24,15 @@ find_package(rosidl_default_generators REQUIRED)
 set(msg_files
   msg/Point3D.msg
   msg/Point3DArray.msg
+  msg/FloatArray.msg
 )
 set(srv_files
-  # srv/AddThreeInts.srv
+  srv/ComputeRIR.srv
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   ${msg_files}
-  # ${srv_files}
+  ${srv_files}
 )
 
 ament_package()
