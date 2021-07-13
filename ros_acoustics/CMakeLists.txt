@@ -21,6 +21,13 @@ find_package(rclpy REQUIRED)
 # required for python nodes
 ament_python_install_package(${PROJECT_NAME})
 
+# install launch file
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/
+)
+
+
 # install python scripts
 set(python_scripts
   scripts/srv_compute_rir.py
@@ -32,7 +39,6 @@ install(PROGRAMS
   ${python_scripts}
   DESTINATION lib/${PROJECT_NAME}
 )
-
 
 # install our custom interfaces
 find_package(rosidl_default_generators REQUIRED)
