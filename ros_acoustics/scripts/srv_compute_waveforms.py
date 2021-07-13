@@ -14,16 +14,19 @@ class ComputeWaveformsService(Node):
 		
 		# TODO: Set these variables using parameter server
 		self._room_path = room_path
-		self._room_fs = 8000
+		# self._room_fs = self.get_parameter('fs').value
 		self._room_air_absorption = True
 		self._room_ray_tracing = False
 		
-		self.get_logger().info('Initiated compute waveforms service.')
+		self._info_log('Initiated compute waveforms service.')
 
 	def compute_waveforms_callback(self, request, response):
-		print('compute waveforms callback')
+		self._info_log('Received request to compute waveforms.')
 
 		return response
+
+	def _info_log(self, info_msg):
+		self.get_logger().info(info_msg)
 	
 def main(args=None):
 	rclpy.init(args=None)
