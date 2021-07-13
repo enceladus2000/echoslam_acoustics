@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from numpy.lib.index_tricks import RClass
 from ros_acoustics.srv import ComputeRIR
 
 import rclpy
