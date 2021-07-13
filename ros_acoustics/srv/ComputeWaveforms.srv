@@ -1,0 +1,5 @@
+Point3D source_pos
+Point3D[] mic_pos
+FloatArray source_wav
+---
+FloatArray[] waveforms
