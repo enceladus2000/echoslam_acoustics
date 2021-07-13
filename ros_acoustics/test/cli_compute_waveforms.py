@@ -10,7 +10,7 @@ class BasicComputeWaveformsClient(Node):
 	
 	def __init__(self):
 		super().__init__('basic_waveforms_client')
-		self.cli = self.create_client(ComputeWaveforms, 'compute_waveforms_client')
+		self.cli = self.create_client(ComputeWaveforms, 'compute_waveforms')
 		
 		while not self.cli.wait_for_service(timeout_sec=1.0):
 			self.get_logger().info('Service unavailable, trying again in 1s...')
@@ -21,10 +21,10 @@ class BasicComputeWaveformsClient(Node):
 		self.req.source_pos.x = 2.
 		self.req.source_pos.y = 2.5
 		self.req.source_pos.z = 1.
-		self.req.mic_pos.x = 2.5
-		self.req.mic_pos.y = 2.5
-		self.req.mic_pos.z = 1.
-		self.req.source_wav = [.1, .2, .3, .24]
+		# self.req.mic_pos[0].x = 2.5
+		# self.req.mic_pos[0].y = 2.5
+		# self.req.mic_pos[0].z = 1.
+		self.req.source_wav.array = [.1, .2, .3, .24]
 
 		self.future = self.cli.call_async(self.req)
 
@@ -46,8 +46,8 @@ def main(args=None):
 			else:
 				waveforms_client.get_logger().info('Received response! Plotting...')
 
-				plt.plot(response.waveforms[0].array)
-				plt.show()
+				# plt.plot(response.waveforms[0].array)
+				# plt.show()
 
 			break
 

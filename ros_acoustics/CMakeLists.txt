@@ -24,7 +24,9 @@ ament_python_install_package(${PROJECT_NAME})
 # install python scripts
 set(python_scripts
   scripts/srv_compute_rir.py
-  scripts/cli_compute_rir.py  
+  scripts/srv_compute_waveforms.py
+  test/cli_compute_rir.py  
+  test/cli_compute_waveforms.py
 )
 install(PROGRAMS
   ${python_scripts}
@@ -42,6 +44,7 @@ set(msg_files
 )
 set(srv_files
   srv/ComputeRIR.srv
+  srv/ComputeWaveforms.srv
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}
